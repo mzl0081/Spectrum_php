@@ -1,7 +1,53 @@
 <?php
 session_start();
-include_once '../data/db-conn.php'; 
+include_once '../data/db-conn.php';
+
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+if(isset($_POST['update']))
+{
+	$username = mysqli_real_escape_string($conn, $_POST['username']);
+	$userRealName = mysqli_real_escape_string($conn, $_POST['userRealName']);
+	$email = mysqli_real_escape_string($conn, $_POST['email']);
+	$password = mysqli_real_escape_string($conn, $_POST['password']);
+	$uid = $_SESSION["uid"];
+
+	$sql = "UPDATE spectrum_users SET userAccount='$username', userPassword='$password', userEmail='$email', userDisplayName='$userRealName' WHERE userID='$uid';";
+	mysqli_query($conn, $sql);
+	header("Location: ./stuInfoDetail.php?stu=$username");
+	
+}
+else
+{
+	if(isset($_POST['edit']))
+	{
+		$getUname = explode("?", $actual_link);
+		$username = explode("=", $getUname[1])[1];
+		//print_r($username);
+	}
+	else
+	{
+		$getUname = explode("=", $actual_link);
+		$username = $getUname[1];
+	}
+	
+	$sql = "SELECT * FROM spectrum_users WHERE userAccount='$username';";
+	$result = mysqli_query($conn, $sql);
+	$resultCheck = mysqli_num_rows($result);
+	if ($resultCheck > 0)
+	{
+		while ($row = mysqli_fetch_assoc($result)) 
+		{
+			$_SESSION["uid"] = $row["userID"];
+			$email = $row["userEmail"];
+			$password = $row["userPassword"];
+			$userRealName = $row["userDisplayName"];
+		}
+	}	
+}
+
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,54 +57,6 @@ include_once '../data/db-conn.php';
 	<h1><a href="./adminIndex.php">Admin Index</a></h1>
 	<h2><a href="./studentInfo.php">Go back</a></h2>
 	<h1>Hello user!</h1>
-	<?php
-
-	$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-	if(isset($_POST['update']))
-	{
-		$username = mysqli_real_escape_string($conn, $_POST['username']);
-		$userRealName = mysqli_real_escape_string($conn, $_POST['userRealName']);
-		$email = mysqli_real_escape_string($conn, $_POST['email']);
-		$password = mysqli_real_escape_string($conn, $_POST['password']);
-		$uid = $_SESSION["uid"];
-
-		$sql = "UPDATE spectrum_users SET userAccount='$username', userPassword='$password', userEmail='$email', userDisplayName='$userRealName' WHERE userID='$uid';";
-		mysqli_query($conn, $sql);
-		header("Location: ./stuInfoDetail.php?stu=$username");
-		
-	}
-	else
-	{
-		if(isset($_POST['edit']))
-		{
-			$getUname = explode("?", $actual_link);
-			$username = explode("=", $getUname[1])[1];
-			print_r($username);
-		}
-		else
-		{
-			$getUname = explode("=", $actual_link);
-			$username = $getUname[1];
-		}
-		
-		$sql = "SELECT * FROM spectrum_users WHERE userAccount='$username';";
-		$result = mysqli_query($conn, $sql);
-		$resultCheck = mysqli_num_rows($result);
-		if ($resultCheck > 0)
-		{
-			while ($row = mysqli_fetch_assoc($result)) 
-			{
-				$_SESSION["uid"] = $row["userID"];
-				$email = $row["userEmail"];
-				$password = $row["userPassword"];
-				$userRealName = $row["userDisplayName"];
-			}
-		}	
-	}
-	
-
-	?>
-
 	<table>
 		<caption>User Information</caption>
 		<thead>
@@ -98,11 +96,6 @@ include_once '../data/db-conn.php';
 				echo "</tr>";
 
 			}
-
-			?>
-
-			<?php
-
 
 			?>
 

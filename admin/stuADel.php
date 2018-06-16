@@ -1,48 +1,24 @@
 <?php
 include_once '../data/db-conn.php'; 
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title>adminIndex</title>
-</head>
-<body onload="myFunction()">
 
-  <h3 id="showMessage"></h3>
-  <?php
+$actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+$getAnsId = explode("=", $actual_link);
+$ansId = $getAnsId[1];
 
-  $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-  $getAnsId = explode("=", $actual_link);
-  $ansId = $getAnsId[1];
-
-  $sql = "DELETE FROM spectrum_topic_reply WHERE topicReplyID='$ansId';";
-  mysqli_query($conn, $sql);
-  header("Location:./studentDisc.php");
-  exit();
-
-  ?>
-
-	
-</body>
-</html>
-
-<script>
-function myFunction() 
+$sql = "SELECT * FROM spectrum_topic_reply WHERE topicReplyID='$ansId';";
+$result = mysqli_query($conn, $sql);
+$resultCheck = mysqli_num_rows($result);
+if ($resultCheck > 0)
 {
-    var txt;
-    var inputPwd = prompt("Please enter your password:", "");
-    if (inputPwd == "admin") {
-        txt = "Password correct.";
-    } else {
-        txt = "Password wrong";
-        var myVar = setInterval(directToPage, 5000);        
-    }
-    document.getElementById("showMessage").innerHTML = txt;
+  $row = mysqli_fetch_assoc($result);
+  $userId = $row["userID"];
+  $quesId = $row["topicID"];
 }
 
+$sql = "DELETE FROM spectrum_topic_reply WHERE topicReplyID='$ansId';";
+mysqli_query($conn, $sql);
 
-function directToPage()
-{
-  window.location.href = "./studentDisc.php";
-}
-</script>
+header("Location: ../admin/studentADetails.php?quesId=$quesId&stuId=$userId");
+exit();
+
+

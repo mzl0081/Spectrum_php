@@ -51,7 +51,7 @@ include_once '../data/db-conn.php';
 		?>
 	</h1>
 
-	<form name="admin_QDetail" action="../data/db-adminQ.php" method="POST">
+	<form name="admin_caseDetails" action="../data/db-adminCaseEditDelete.php" method="POST">
 		<table style="width:800px; border="0">
           <tr>
             <td colspan="2">&nbsp;</td>
@@ -125,7 +125,7 @@ include_once '../data/db-conn.php';
 
           <tr>
             <td>
-              <strong>Case Video: </strong>
+              <strong>Teacher's Note: </strong>
             </td>
             <td>
               <?php

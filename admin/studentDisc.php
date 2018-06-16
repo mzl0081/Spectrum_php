@@ -12,12 +12,11 @@ include_once '../data/db-conn.php';
 
 
 		<table>
-			<caption>Student Users List</caption>
 			<thead>
 				<tr>
 					<th>Username/User Account</th>
-					<th>Questions</th>
-					<th>Answers</th>
+					<th>Topics</th>
+					<th>Topic Replies</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,8 +33,8 @@ include_once '../data/db-conn.php';
 							$userId = $row["userID"];
 
 							echo "<tr><td>".$username."</td>";
-							echo "<td><a href='./studentDiscQ.php?stuId=$userId'>Questions</a></td>";
-							echo "<td><a href='./studentDiscA.php?stuId=$userId'>Answers</a></td></tr>";
+							echo "<td><a href='./studentDiscQ.php?stuId=$userId'>Topics</a></td>";
+							echo "<td><a href='./studentDiscA.php?stuId=$userId'>Topic Replies</a></td></tr>";
 						}
 					}
 
