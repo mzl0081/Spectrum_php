@@ -6,13 +6,12 @@ if (isset($_POST['update']))
 {
 	include_once 'db-conn.php';
 
-	// $_SESSION["askQuesTime"] = time();
-
 	$username = $_SESSION["loginUser"];
 	// $userId = $_SESSION["loginUserId"];
 	$quesTitle = mysqli_real_escape_string($conn, $_POST['quesTitle']);
 	$description = mysqli_real_escape_string($conn, $_POST['description']);
 	$quesId = mysqli_real_escape_string($conn, $_POST['thisQuesId']);
+	$nowTime = date("Y-m-d h:i:sa");
 
 
 	$sql = "SELECT * FROM spectrum_users WHERE userAccount='$username';";
@@ -25,9 +24,9 @@ if (isset($_POST['update']))
 		$userId = $row["userID"];
 	}
 
-	$sql = "UPDATE spectrum_topics SET topicTitle='$quesTitle', topicContent='$description' WHERE topicID='$quesId';";
+	$sql = "UPDATE spectrum_topics SET topicTitle='".$quesTitle."', topicContent='$description', topicTime='$nowTime' WHERE topicID='$quesId';";
 	mysqli_query($conn, $sql);
-	header("Location: ../discussion/myQuestions.php");
+	header("Location: ../discussion/myQuesDetails.php?quesId=$quesId");
 	exit();
 
 }

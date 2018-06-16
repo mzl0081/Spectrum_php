@@ -25,6 +25,24 @@ if (isset($_POST['submit']))
 
 	$sql = "INSERT INTO spectrum_topic_reply (topicID, userID, replyContent, replyTime) VALUES ('$quesId', '$userId', '$newAns', '$nowTime');";
 	mysqli_query($conn, $sql);
+
+	// $sql = "SELECT * FROM spectrum_topics WHERE topicID='$quesId';";
+	// $result = mysqli_query($conn, $sql);
+	// $resultCheck = mysqli_num_rows($result);
+
+	// if ($resultCheck > 0)
+	// {
+	// 	while ($row = mysqli_fetch_assoc($result))
+	// 	{
+	// 		$replyNum = $row["topicNumberOfReplies"];
+	// 	}
+		
+	// }
+
+
+	// $sql = "UPDATE spectrum_topics SET topicNumberOfReplies='$replyNum' WHERE topicID='$quesId'";
+	// mysqli_query($conn, $sql);
+
 	header("Location: ../discussion/updateNewAns.php");
 	exit();
 

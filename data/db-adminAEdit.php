@@ -4,7 +4,7 @@ if (isset($_POST['update']))
 {
 	include_once 'db-conn.php';
 
-	date_default_timezone_set("America/Chicago");
+	//date_default_timezone_set("America/Chicago");
 
 	$replyContent = mysqli_real_escape_string($conn, $_POST['ansEdit']);
 	$ansId = mysqli_real_escape_string($conn, $_POST['thisAnsId']);
@@ -17,11 +17,13 @@ if (isset($_POST['update']))
 	{
 		$row = mysqli_fetch_assoc($result);
 		$userId = $row["userID"];
+		$quesId = $row["topicID"];
 	}
 
 	$sql = "UPDATE spectrum_topic_reply SET replyContent='$replyContent', replyTime='$nowTime' WHERE topicReplyID='$ansId';";
 	mysqli_query($conn, $sql);
-	header("Location: ../admin/studentDiscA.php?stuId=$userId");
+	
+	header("Location: ../admin/studentADetails.php?quesId=$quesId&stuId=$userId");
 	exit();
 
 }
