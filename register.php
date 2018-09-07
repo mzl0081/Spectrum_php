@@ -1,11 +1,27 @@
 <?php
 session_start();
+
+if (isset($_SESSION["loginUser"]))
+{
+  if ($_SESSION["loginUser"] == "Administrator")
+  {
+    header("Location: ./admin/adminIndex.php");
+    exit();
+  }
+  else
+  {
+    header("Location: ./home.php");
+    exit();
+  }
+  
+}
+
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-<title>Spectrum Educational tool</title>
-<link rel="stylesheet" href="http://www.auburn.edu/template/styles/sidebar.css" media="screen" type="text/css" />
+<title>Spectrum Educational Tool Register</title>
+<link rel="stylesheet" href="http://www.auburn.edu/template/styles/stretchSidebar.css" media="screen" type="text/css" />
 <!--#include virtual="/template/includes/head.html" -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
@@ -19,7 +35,7 @@ session_start();
         
       </div>
       <div id="headerTitle">
-        <div class="titleArea">
+        <div class="titleArea" style="position: relative;left: 230px;top:40px">
           <span class="mainHeading"><!-- TemplateBeginEditable name="unitTitle" -->Spectrum Educational Tool<!-- TemplateEndEditable --></span>
           <span class="subHeading"><!-- TemplateBeginEditable name="unitSubTitle" -->an online resource training for student 
       teachers<!-- TemplateEndEditable --></span>
@@ -28,38 +44,39 @@ session_start();
     </div>
   </div>
   <div id="contentArea">
+    <div class="sidebar">
+      <h4><a href="./home.php" target="_self" title="Home">Home</a></h4>
+      <div class="orangeDecorBar" style="width: 200px"></div>
+      <a href="./login.php">Log in</a>
+      <h4><a href="./register.php">Register</a></h4>
+    </div>
     <div class="contentDivision"> 
       <p class="breadcrumb"> <!-- TemplateBeginEditable name="breadcrumb" --> <a href="./home.php">Home</a> &gt; Register <!-- TemplateEndEditable --> </p>
       <!-- TemplateBeginEditable name="body" -->
 
- <h3><strong>Register</strong></h3>
    <form name="register_details" action="./data/db-register.php" method="POST" onsubmit="return Validate()">
     <center>
-        <table style="width:400px; border="0">
+        <table style="width:600px; border="0">
           <tr>
             <td colspan="2">&nbsp;</td>
           </tr>
 
           <tr>
             <td width="139" align="right">
-              <strong>User Account:</strong>
+              <strong>User Account/Username:</strong>
             </td>
             <td width="245" align="left">
               <input type="text" name="username" value="" maxlength="50" style="width:175px; text-transform:none;">                
               <div id="uname_error" style="color:#f44336;">
                 <?php
-                $_SESSION["regMsg"];
-                if($_SESSION["regMsg"]==null)
+                if(empty($_SESSION["regMsg"]))
                 {
-                  $_SESSION["regMsg"] = "";
+                  echo "";
                 }
                 else
                 {  
-                  if($_SESSION["regMsg"]!="")
-                  {
-                    echo "*Username exists";
-                    $_SESSION["regMsg"] = "";
-                  }
+                  echo "*Username exists";
+                  //$_SESSION["regMsg"] = ""; 
                 }
                 ?>
               </div>
@@ -111,8 +128,8 @@ session_start();
             <td></td>
             <td>
               <br />
-              <input type="submit" name="submit" value="Sign Up" onMouseOver="this.style.cursor='hand'" style="width:100px; height:30px;">      
-              <input type="reset" value="Reset" onMouseOver="this.style.cursor='hand'" style="width:100px; height:30px;">
+              <input type="submit" name="submit" value="Sign Up" onMouseOver="this.style.cursor='hand'" style="width:88px; height:30px;">      
+              <input type="reset" value="Reset" onMouseOver="this.style.cursor='hand'" style="width:88px; height:30px;">
               <br /><br />
             </td>
           </tr>
@@ -120,16 +137,7 @@ session_start();
       </center>
     </form>
 
-
-
     </div>
-    <div class="sidebar"> <!-- TemplateBeginEditable name="sidebar" -->
-      <p class="sidebarTitle"><a href="./home.html" target="_self" title="Home">Home</a></p>
-      <p></p>
-      <p class="sidebarTitle"><a href="./login.php">Log in</a></p>
-      <p></p>
-      <p class="sidebarTitle"><a href="./register.php">Register</a></p>
-      </div>
   </div>
   <div id="contentArea_bottom"></div>
   <div id="footerWrap">

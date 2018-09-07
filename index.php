@@ -2,14 +2,11 @@
 session_start();
 ?>
 
-<?php
-$_SESSION["loginMsg"] = "";
-$_SESSION["regMsg"] = "";
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Spectrum</title>
+<title>PRISM Educational Consulting, LLC</title>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="" />
@@ -38,8 +35,8 @@ $_SESSION["regMsg"] = "";
 						<div class="w3layouts-banner-top">
 							<div class="container">
 								<div class="agileits-banner-info">
-									<h3>How To<span>Teach</span> ?</h3>
-										<p>LEARN CASES WITH US</p>
+									<h3>UNLOCK YOUR<span>POTENTIAL</span></h3>
+										<p>WE EDUCATE HOLISTICALLY</p>
 									<div class="agileits_w3layouts_more menu__item">
 				<a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Learn More</a>
 			</div>
@@ -51,8 +48,8 @@ $_SESSION["regMsg"] = "";
 						<div class="w3layouts-banner-top w3layouts-banner-top1">
 							<div class="container">
 								<div class="agileits-banner-info">
-									<h3>How To<span>Teach</span> ?</h3>
-									<p>LEARN CASES WITH US</p>
+									<h3>UNLOCK YOUR<span>POTENTIAL</span></h3>
+										<p>WE EDUCATE HOLISTICALLY</p>
 									<div class="agileits_w3layouts_more menu__item">
 				<a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Learn More</a>
 			</div>
@@ -64,8 +61,8 @@ $_SESSION["regMsg"] = "";
 						<div class="w3layouts-banner-top w3layouts-banner-top2">
 							<div class="container">
 								<div class="agileits-banner-info">
-									<h3>How To<span>Teach</span> ?</h3>
-									<p>LEARN CASES WITH US</p>
+									<h3>UNLOCK YOUR<span>POTENTIAL</span></h3>
+										<p>WE EDUCATE HOLISTICALLY</p>
 									<div class="agileits_w3layouts_more menu__item">
 											<a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Learn More</a>
 										</div>
@@ -92,12 +89,12 @@ $_SESSION["regMsg"] = "";
 				<div class="container">
 					<div class="navbar-header page-scroll">
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-							<span class="sr-only">SPECTRUM</span>
+							<span class="sr-only">PRISM</span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<h1><a class="navbar-brand" href="index.php">SPECTRUM</a></h1>
+						<h1><a class="navbar-brand" href="index.php">PRISM</a></h1>
 					</div> 
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -106,6 +103,7 @@ $_SESSION["regMsg"] = "";
 							<li class="hidden"><a class="page-scroll" href="#page-top"></a>	</li>
 							<li><a class="page-scroll scroll" href="#home">Home</a></li>
 							<li><a class="page-scroll scroll" href="#about">About</a></li>
+							<li><a class="page-scroll scroll" href="#team">Team</a></li>
 							<li><a class="page-scroll scroll" href="#services">Services</a></li>
 							<li><a class="page-scroll scroll" href="#tools">Tools</a></li>
 							<li><a class="page-scroll scroll" href="#contact">Contact</a></li>
@@ -125,9 +123,9 @@ $_SESSION["regMsg"] = "";
 <div class="about" id="about">
       <div class="col-md-6 ab-w3-agile-info">
 	   <div class="ab-w3-agile-info-text">
-	     <h2 class="title-w3">Spectrum Team</h2>
-		 <p class="sub-text one">Dr.Cherly Seals</p>
-		 <p>Dr.Cheryl Seals is an associate professor in computer science & software engineering at Auburn University with over 12 years of experience in CS teaching at the university level and have worked to provide active learning activities or problem based learning assignments in my User Interface Design & Game Design/Development classes.</p>
+	     <h2 class="title-w3">PRISM</h2>
+		 <p class="sub-text one">PRISM Educational Consulting, LLC.</p>
+		 <p>PRISM represents a spectrum of services that provide continuous support for organizations and companies to empower people with the skills that are needed to succeed in life.</p>
 			<div class="agileits_w3layouts_more menu__item one">
 				<a href="#" class="menu__link" data-toggle="modal" data-target="#myModal">Learn More</a>
 			</div>
@@ -147,121 +145,10 @@ $_SESSION["regMsg"] = "";
 	       </div>
 			<div class="clearfix"></div>		   
 	  </div>	
-   </div>	 	  
+   </div>
+
 	  <div class="col-md-6 ab-w3-agile-img"></div>
- 
-		<div class="clearfix"></div>
-
-				      <div class="team-grids">
-					<!-- Bottom to top-->
-						<div class="col-sm-4 team-grid">
-							<!-- normal -->
-							<div class="ih-item circle effect10 bottom_to_top">
-								<div class="img"><img src="images/t1.jpg" alt="img" /></div>
-								<div class="info">
-									<h3>Dr.Cheryl Seals</h3>
-									<div class="icons">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- end normal -->
-						</div>
-						<div class="col-sm-4 team-grid">
-							<!-- normal -->
-							<div class="ih-item circle effect10 bottom_to_top">
-								<div class="img"><img src="images/t2.jpg" alt="img" /></div>
-								<div class="info">
-									<h3>Dr.Thomas</h3>
-									<div class="icons">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- end normal -->
-						</div>
-						<div class="col-sm-4 team-grid">
-							<!-- normal -->
-							<div class="ih-item circle effect10 bottom_to_top">
-								<div class="img"><img src="images/t3.jpg" alt="img" /></div>
-								<div class="info">
-									<h3>Dr.Tripp</h3>
-									<div class="icons">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- end normal -->
-						</div>
-						<div class="col-sm-4 team-grid">
-							<!-- normal -->
-							<div class="ih-item circle effect10 bottom_to_top">
-								<div class="img"><img src="images/t4.jpg" alt="img" /></div>
-								<div class="info">
-									<h3>Dr.Harrison</h3>
-									<div class="icons">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- end normal -->
-						</div>
-						<div class="col-sm-4 team-grid">
-							<!-- normal -->
-							<div class="ih-item circle effect10 bottom_to_top">
-								<div class="img"><img src="images/t5.jpg" alt="img" /></div>
-								<div class="info">
-									<h3>Muzi Li</h3>
-									<div class="icons">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- end normal -->
-						</div>
-						<div class="col-sm-4 team-grid">
-							<!-- normal -->
-							<div class="ih-item circle effect10 bottom_to_top">
-								<div class="img"><img src="images/t6.jpg" alt="img" /></div>
-								<div class="info">
-									<h3>Chang Ren</h3>
-									<div class="icons">
-										<ul>
-											<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-											<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<!-- end normal -->
-						</div>
-						<div class="clearfix"> </div>
-					<!-- end Bottom to top-->
-				</div>
-
-	<!-- //about -->
-		<!-- Modal1 -->
+	  		<!-- Modal1 -->
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
 				<div class="modal-dialog">
 				<!-- Modal content-->
@@ -269,15 +156,130 @@ $_SESSION["regMsg"] = "";
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 <!-- 							<img src="images/2.jpg" alt=" " class="img-responsive"> -->
-							<h5>Dr. Cherly Seals</h5>
-							<p>Dr. Seals has over 18 years in computing training and work related to computing education and computing industry (i.e. as a Member of Technical Staff at Bellcore, Polaroid, and Application Integration & Test at IBM). She has worked since 1998 with retention and outreach scholarship programs and other initiatives to improve STEM education at all levels with over $2 million in funding in the area of scholarship and outreach scholarship to support areas of Broadening Participation in Computing (e.g. support the recruitment and retention of women and under-represented groups in computing. As an associate professor, she has developed over 50 research and/or outreach publications, and more than 50 presentations to support the recruitment and retention of students in computing and have supported over 2 dozen computing camps.
-
-							Dr. Seals has also worked with National Alliances for student support and service learning since 2006. One of these initiatives is the STARS Alliance (starscomputingcorps.org) a regional academic partnerships with over 50 institutions, industry, K-12 and the community to strengthen local broadening of computing by focusing on K-12 outreach, community service, student leadership and computing diversity research. She has worked with another national mentoring program the Institute of African Americans Mentoring in Computing Sciences(iAAMCS) iAAMCS.org, that powers the newly formed National Society of Blacks in Computing NSBC.org..</p>
+							<h5>PRISM Educational Consulting. LLC</h5>
+							<p>PRISM represents a spectrum of services that provide continuous support for organizations and companies to empower people with the skills that are needed to succeed in life.</p>
 						</div>
 					</div>
 				</div>
 			</div>
 													<!-- //Modal1 -->
+</div>
+<!-- //about -->
+<div class="clearfix"></div>
+
+<div class="team" id="team">
+		</br>
+		<h3 class="title-w3">Team</h3>
+		 <p class="sub-text">Educate Holistically</p>
+	      <div class="team-grids">
+		<!-- Bottom to top-->
+			<div class="col-sm-4 team-grid">
+				<!-- normal -->
+				<div class="ih-item circle effect10 bottom_to_top">
+					<div class="img"><img src="images/t1.jpg" alt="img" /></div>
+					<div class="info">
+						<h3>Dr.Cheryl Seals</h3>
+						<div class="icons">
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- end normal -->
+			</div>
+			<div class="col-sm-4 team-grid">
+				<!-- normal -->
+				<div class="ih-item circle effect10 bottom_to_top">
+					<div class="img"><img src="images/Tripp.jpg" alt="img" /></div>
+					<div class="info">
+						<h3>Dr.Tripp</h3>
+						<div class="icons">
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- end normal -->
+			</div>
+			<div class="col-sm-4 team-grid">
+				<!-- normal -->
+				<div class="ih-item circle effect10 bottom_to_top">
+					<div class="img"><img src="images/thomas.jpg" alt="img" /></div>
+					<div class="info">
+						<h3>Dr.Thomas</h3>
+						<div class="icons">
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- end normal -->
+			</div>
+			<div class="col-sm-4 team-grid">
+				<!-- normal -->
+				<div class="ih-item circle effect10 bottom_to_top">
+					<div class="img"><img src="images/t4.jpg" alt="img" /></div>
+					<div class="info">
+						<h3>Dr.Harrison</h3>
+						<div class="icons">
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- end normal -->
+			</div>
+			<div class="col-sm-4 team-grid">
+				<!-- normal -->
+				<div class="ih-item circle effect10 bottom_to_top">
+					<div class="img"><img src="images/t5.jpg" alt="img" /></div>
+					<div class="info">
+						<h3>Muzi Li</h3>
+						<div class="icons">
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- end normal -->
+			</div>
+			<div class="col-sm-4 team-grid">
+				<!-- normal -->
+				<div class="ih-item circle effect10 bottom_to_top">
+					<div class="img"><img src="images/t6.jpg" alt="img" /></div>
+					<div class="info">
+						<h3>Chang Ren</h3>
+						<div class="icons">
+							<ul>
+								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li class="team-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- end normal -->
+			</div>
+			<div class="clearfix"> </div>
+		<!-- end Bottom to top-->
+	</div>
+<!-- 	end team -->
+</div>
 
 		<!-- Services-->
 	<div class="services" id="services">
@@ -285,7 +287,7 @@ $_SESSION["regMsg"] = "";
 
 		 <h3 class="title-w3">Services</h3>
 		 <br/>
-		 <p class="sub-text">Help teachers to do better</p>
+		 <p class="sub-text">Empowering people to succeed in life</p>
 		     <div class="wthree-agile-classes-section">
 	               	<div class="col-md-3 class-grid">
 						<div class="class-grid-img hvr-sweep-to-top">
@@ -334,7 +336,7 @@ $_SESSION["regMsg"] = "";
 	<div class="tools" id="tools">
         <br/>
 		<h3 class="title-w3">Tools</h3>
-		 <p class="sub-text"><a href="home.html" class="btn btn-link" role="button">Spectrum</a></p>
+		 <p class="sub-text"><a href="login.php" class="btn btn-link" role="button">Spectrum</a></p>
 
 			<div class="gallery-grids carouselGallery-grid hidden-xs">
 				<div class="col-md-4 gallery-grid">
@@ -393,7 +395,7 @@ $_SESSION["regMsg"] = "";
 				<div class="col-md-12 left-contact">
 				<div class="cont-top">
 					<h5><i class="fa fa-envelope" aria-hidden="true"></i>Email</h5>
-					<a href="mailto:info@example.com">spectrumeduteam@gmail.com</a>
+					<a href="mailto:info@example.com">peceduc@gmail.com</a>
 				</div>
 				<div class="con-bot">
 					<div class="left-bw3">
@@ -403,7 +405,7 @@ $_SESSION["regMsg"] = "";
 					</div>
 					<div class="right-bw3">
 						<h5><i class="fa fa-phone" aria-hidden="true"></i>Phone</h5>
-						<p>Telephone : +1 (334) 844-4000</p>
+						<p>Telephone : +1 (256) 401-7154</p>
 					</div>
 				</div>
 			</div>
@@ -441,7 +443,7 @@ $_SESSION["regMsg"] = "";
 <!-- footer -->
 
 <div class="copy-right">
-	<p>Copyright &copy; 2018 Spectrum. Proudly created with Spectrum team of Dr. Seals. </p>
+	<p>Copyright &copy; 2018 PRISM Educational Consulting, LLC. Proudly created with Spectrum team of Dr. Seals. </p>
 </div>
 
 <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
@@ -454,7 +456,7 @@ $_SESSION["regMsg"] = "";
 
 						<script src="js/responsiveslides.min.js"></script>
 			<script>
-						// You can also use "$(window).load(function() {"
+						
 						$(function () {
 						  // Slideshow 4
 						  $("#slider4").responsiveSlides({
@@ -474,7 +476,6 @@ $_SESSION["regMsg"] = "";
 						});
 			</script>
 			<script>
-								// You can also use "$(window).load(function() {"
 								$(function () {
 								  // Slideshow 4
 								  $("#slider3").responsiveSlides({

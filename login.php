@@ -1,15 +1,31 @@
 ﻿<?php
 session_start();
-$_SESSION["regMsg"] = "";
+
+if (isset($_SESSION["loginUser"]))
+{
+  if ($_SESSION["loginUser"] == "Administrator")
+  {
+    header("Location: ./admin/adminIndex.php");
+    exit();
+  }
+  else
+  {
+    header("Location: ./home.php");
+    exit();
+  }
+  
+}
+
+
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>
-Spectrum Educational tool
-
+Spectrum Educational Tool Login
 </title>
-<link rel="stylesheet" href="http://www.auburn.edu/template/styles/sidebar.css" media="screen" type="text/css" />
+<link rel="stylesheet" href="http://www.auburn.edu/template/styles/stretchSidebar.css" media="screen" type="text/css" />
 <!--#include virtual="/template/includes/head.html" -->
 <!-- TemplateBeginEditable name="head" -->
 <!-- TemplateEndEditable -->
@@ -23,29 +39,51 @@ Spectrum Educational tool
         
       </div>
       <div id="headerTitle">
-        <div class="titleArea">
+        <div class="titleArea" style="position: relative;left: 230px;top:40px">
           <span class="mainHeading"><!-- TemplateBeginEditable name="unitTitle" -->Spectrum Educational Tool<!-- TemplateEndEditable --></span>
           <span class="subHeading"><!-- TemplateBeginEditable name="unitSubTitle" -->an online resource training for student 
       teachers<!-- TemplateEndEditable --></span>
         </div>
       </div>
     </div>
-    <table class="nav">
-      
-    </table>
+<!--     <table class="nav"></table> -->
   </div>
   <div id="contentArea">
+    <div class="sidebar">
+      <h4><a href="./home.php" target="_self" title="Home">Home</a></h4>
+      <div class="orangeDecorBar" style="width: 200px"></div>
+      <h4><a href="./login.php">Log in</a></h4>
+      <a href="./register.php">Register</a>
+    </div>
     <div class="contentDivision"> 
       <p class="breadcrumb"> <!-- TemplateBeginEditable name="breadcrumb" --> <a href="./home.php">Home</a> &gt; Log in <!-- TemplateEndEditable --> </p>
       <!-- TemplateBeginEditable name="body" -->
      
- <h3><strong>Log in</strong></h3>
+<!--  <h3><strong>Log in</strong></h3> -->
    <form name="login_details" action="./data/db-login.php" method="post" onsubmit="return Validate()">
     <center>
         <table style="width:400px; border="0">
-          <tr>
-            <td colspan="2">&nbsp;</td>
-          </tr>
+          <?php
+          echo '<tr>';
+          if (isset($_SESSION["regMsg"]))
+          {
+            if ($_SESSION["regMsg"] == "success")
+            {
+              echo '<td colspan="2">You have successfully registered! Please log in.</td>';
+              $_SESSION["regMsg"] = "";
+            }
+            else
+            {
+              echo '<td colspan="2">&nbsp;</td>';
+            }
+          }
+          else
+          {
+            echo '<td colspan="2">&nbsp;</td>';
+          }
+          echo '<tr>';
+          ?>
+          
 
           <tr>
             <td width="139" align="right">
@@ -56,19 +94,19 @@ Spectrum Educational tool
               <input type="text" name="username" value="" maxlength="50" style="width:175px; text-transform:none;">
               <div id="uname_error" style="color:#f44336;">
               <?php
-              $_SESSION["loginMsg"];
-              if($_SESSION["loginMsg"]==null)
-              {
-                $_SESSION["loginMsg"] = "";
-              }
-              else
+              if (isset($_SESSION["loginMsg"]))
               {
                 if($_SESSION["loginMsg"] == "user doesn't exist")
                 {
                   echo "*User doesn't exist";
-                  $_SESSION["loginMsg"] = "";
+                  //$_SESSION["loginMsg"] = "";
+                }
+                else
+                {
+                  echo "";
                 }
               }
+
               ?>
             </div>
             </td>
@@ -82,16 +120,16 @@ Spectrum Educational tool
               <input type="password" name="password" value="" maxlength="16" style="width:175px; text-transform:none;">
               <div id="password_error" style="color:#f44336;">
               <?php
-              if($_SESSION["loginMsg"]==null)
-              {
-                $_SESSION["loginMsg"] = "";
-              }
-              else
+              if (isset($_SESSION["loginMsg"]))
               {
                 if($_SESSION["loginMsg"] == "password incorrect")
                 {
                   echo "*Password incorrect";
-                  $_SESSION["loginMsg"] = "";
+                  //$_SESSION["loginMsg"] = "";
+                }
+                else
+                {
+                  echo "";
                 }
               }
               ?>
@@ -102,53 +140,36 @@ Spectrum Educational tool
           <tr>
             <td></td>
             <td>
-              <br />
+              <br>
               <input type="radio" name="userType" value="student" style="margin-right: 5px;">
               <font size="2" face="arial">Student</font>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <input type="radio" name="userType" value="admin" style="margin-right: 5px;">
               <font size="2" face="arial">Admin</font>
-              <br /><br />
+              <br><br>
             </td>
           </tr>
-
-          <!-- <tr>
-            <td align="right">
-              <td align="left">
-                <a href="forgotPassword.html">Forgot password?</a>
-              </td>
-          </tr> -->
 
           <tr>
             <td></td>
             <td>
-              <br />
-              <input type="submit" name="submit" value="Log In" onMouseOver="this.style.cursor='hand'" style="width:100px; height:30px;">      
-              <input type="reset" value="Reset" onMouseOver="this.style.cursor='hand'" style="width:100px; height:30px;">
-              <br /><br />
+              <br>
+              <input type="submit" name="submit" value="Log In" onMouseOver="this.style.cursor='hand'" style="width:88px">      
+              <input type="reset" value="Reset" onMouseOver="this.style.cursor='hand'" style="width:88px">
+              <br><br>
             </td>
           </tr>
         </table>
         
       </center>
     </form>
-
-
-
+      <!-- end contentDivision -->
     </div>
-   <div class="sidebar"> <!-- TemplateBeginEditable name="sidebar" -->
-      <p class="sidebarTitle"><a href="./home.php" target="_self" title="Home">Home</a></p>
-      <p></p>
-      <p class="sidebarTitle"><a href="./login.php">Log in</a></p>
-      <p></p>
-      <p class="sidebarTitle"><a href="./register.php">Register</a></p>
-    </div>
+<!-- end contentArea -->
   </div>
   <div id="contentArea_bottom"></div>
   <div id="footerWrap">
-    <div id="footer">
-    
-    </div>  
+    <div id="footer"></div>  
     <div id="subfooter">
       Auburn University | Auburn, Alabama 36849 | (334) 844-4000  | <script type="text/javascript">emailE='gmail.com'; emailE=('spectrumeduteam' + '@' + emailE); document.write("<a href='mailto:" + emailE + "'>" + emailE + "</a>");</script>
       <br />
@@ -156,7 +177,7 @@ Spectrum Educational tool
       <script type="text/javascript">date = new Date(); document.write(date.getFullYear());</script></a>
     </div>
   </div>
-  <!--#include virtual="/template/includes/gatc.html" --> 
+  <!--end pageWrap --> 
 </div>
 </body>
 </html>
