@@ -1,13 +1,13 @@
 <?php
 
-if (isset($_POST['update']))
+if (isset($_POST['updateAns']))
 {
 	include_once 'db-conn.php';
 
-	//date_default_timezone_set("America/Chicago");
+	date_default_timezone_set("America/Chicago");
 
-	$replyContent = mysqli_real_escape_string($conn, $_POST['ansEdit']);
-	$ansId = mysqli_real_escape_string($conn, $_POST['thisAnsId']);
+	$replyContent = mysqli_real_escape_string($conn, $_POST['newAnswer']);
+	$ansId = mysqli_real_escape_string($conn, $_POST['updateAnsId']);
 	$nowTime = date("Y-m-d h:i:sa");
 
 	$sql = "SELECT * FROM spectrum_topic_reply WHERE topicReplyID='$ansId';";

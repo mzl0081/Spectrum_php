@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once '../data/db-conn.php'; 
 
 $actual_link = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
@@ -11,89 +12,145 @@ $caseId = $getCaseId[1];
 <!DOCTYPE html>
 <html>
 <head>
-  <title>adminIndex</title>
+    <title>Case Management</title>
+    <link rel="stylesheet" href="https://www.auburn.edu/template/styles/stretchSidebar.css" media="screen" type="text/css" />
 </head>
 <body>
-  <h1><a href="./adminIndex.php">Admin Index</a></h1>
-  <h2><a href="./cases.php">Cases</a></h2>
-  <h1>
-    <?php
-    echo "Case Number: ".$caseId;
-    ?>
-  </h1>
-
-
-  <form name="admin_quizAddQ" action="../data/db-adminQuizAdd.php" method="POST">
-    <table style="width:1200px; border="0">
-          <tr>
-            <td>
-              <strong>Question: </strong>
-            </td>
-            <td colspan="3">
-              <input type="text" name="question" value="" style="width:400px;">
-            </td>
-          </tr>
-
-          
-          <tr>
-            <td>
-              <strong>Numbers of Options: </strong>
-            </td>
-            <td colspan="3">
-              <input type="text" id="optionNum" name="optionNum" value="" style="width:400px;">
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="4">
-               <a href="#" id="addInput" onclick="addFields()">Add Inputs</a>
-            </td>
-          </tr>
-
-           <tr >
-            <td>
-               <div id="container1" />
-            </td>
-            <td>
-               <div id="container2" />
-            </td>
-            <td>
-              <div id="container3" />
-            </td>
-            <td>
-              <div id="container4" />
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="4">&nbsp;</td>
-          </tr>
-
-          <tr>
-            <td>
-              <strong>Explanation: </strong>
-            </td>
-            <td colspan="3">
-              <textarea name="explanation" rows="15" style="width:400px; text-transform:none;"></textarea>
-            </td>
-          </tr>
-         
-
-          <tr>
-            <td>
+<div id="pageWrap"> 
+          <div id="headerWrap">
+          <div id="header">
+                    <div id="logo">
+                         <a href="http://www.auburn.edu/"><img src="http://www.auburn.edu/template/styles/images/headerLogo2.png" alt="Auburn University Homepage"></a>
+                    </div>
+                    <div id="headerTitle">
+                    <div class="titleArea" style="position: relative;left: 230px;top:40px">
+                         <span class="mainHeading"><!-- TemplateBeginEditable name="unitTitle" -->Spectrum Educational Tool<!-- TemplateEndEditable --></span>
+                              <span class="subHeading"><!-- TemplateBeginEditable name="unitSubTitle" -->an online resource training for student teachers<!-- TemplateEndEditable --></span>
+                    </div>
+                    </div>
+          </div>
+          <table class="nav">
+          <td width="600"></td>
               <?php
-              echo '<input type="hidden" name="thisCaseId" value="'.$caseId.'">';
-              ?>
-              <input type="submit" name="add" value="Add Question">
-            </td>
-            <td colspan="3">
-            </td>
-          </tr>
+               if (!isset($_SESSION["loginUser"]))
+               {
+                 header("Location: ../login.php");
+                 exit();
+               }
+               else
+               {
+                 echo '<td style="font-style:italic;width:150;text-align:right;font-size:14px; color:#FFFFFF;">';
+                 echo "Hello! ".$_SESSION["loginUser"];
+                 echo '</td>';
+               }
+               ?>
+              <td style="font-style:inherit;text-align:middle;font-size:14px;"><a href="../logout.php">Logout</a></td>
+        </table>
+     </div>
+     <div id="contentArea">
+          <div class="sidebar"> <!-- TemplateBeginEditable name="sidebar" -->
+               <h4><a class="upLink" href="./adminIndex.php">Home</a></h4>
+               <div class="orangeDecorBar" style="width: 200px"></div>
+               <a href="./stuInfoDetail.php">User Information</a>
+               <h4><a href="./cases.php">Cases</a></h4>
+               <a href="./studentDisc.php">Discussions</a>
+               </div>
+          <div class="contentDivision">
+            <p class="breadcrumb"><a href="./cases.php">Cases</a> &gt; 
+            <?php
+            echo '<a href="quizDetails.php?caseId='.$caseId.'">';?>
+            Quiz</a> &gt; Add</p>
+            <h3><strong>
+            <?php
+            echo "Case Number: ".$caseId;
+            ?>
+            </strong></h3>
 
-      </table>
-    
-  </form>
+            <form name="admin_quizAddQ" action="../data/db-adminQuizAdd.php" method="POST">
+              <table style="width:1200px; border="0">
+                    <tr>
+                      <td>
+                        <strong>Question: </strong>
+                      </td>
+                      <td colspan="3">
+                        <input type="text" name="question" value="" style="width:400px;">
+                      </td>
+                    </tr>
 
+                    
+                    <tr>
+                      <td>
+                        <strong>Numbers of Options: </strong>
+                      </td>
+                      <td colspan="3">
+                        <input type="text" id="optionNum" name="optionNum" value="" style="width:400px;">
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4">
+                         <a href="#" id="addInput" onclick="addFields()">Add Options</a>
+                      </td>
+                    </tr>
+
+                     <tr >
+                      <td>
+                         <div id="container1" />
+                      </td>
+                      <td>
+                         <div id="container2" />
+                      </td>
+                      <td>
+                        <div id="container3" />
+                      </td>
+                      <td>
+                        <div id="container4" />
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td colspan="4">&nbsp;</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <strong>Explanation: </strong>
+                      </td>
+                      <td colspan="3">
+                        <textarea name="explanation" rows="15" style="width:400px; text-transform:none;"></textarea>
+                      </td>
+                    </tr>
+                   
+
+                    <tr>
+                      <td>
+                        <?php
+                        echo '<input type="hidden" name="thisCaseId" value="'.$caseId.'">';
+                        ?>
+                        <input type="submit" name="add" value="Add Question">
+                      </td>
+                      <td colspan="3">
+                      </td>
+                    </tr>
+
+                </table>
+              
+            </form>
+<!-- end contentDivision -->
+  </div>
+<!-- end contentArea -->
+</div>
+<div id="contentArea_bottom"></div>
+     <div id="footerWrap">
+          <div id="footer"></div>  
+          <div id="subfooter">
+          Auburn University | Auburn, Alabama 36849 | (334) 844-4000  | <script type="text/javascript">emailE='gmail.com'; emailE=('spectrumeduteam' + '@' + emailE); document.write("<a href='mailto:" + emailE + "'>" + emailE + "</a>");</script><br />
+          <a href="https://fp.auburn.edu/ocm/auweb_survey">Website Feedback</a> | <a href="http://www.auburn.edu/privacy">Privacy</a> | <a href="http://www.auburn.edu/oit/it_policies/copyright_regulations.php">Copyright &copy; 
+          <script type="text/javascript">date = new Date(); document.write(date.getFullYear());</script></a>
+          </div>
+     </div>
+<!-- end pagewrap -->
+</div>
 
 </body>
 </html>
@@ -134,19 +191,20 @@ function addFields()
   {
 
     //Append a node with a random text
-    container1.appendChild(document.createTextNode("Option " + (i+1)));
+    var para = document.createElement("p");
+    para.innerHTML ="Option " + (i+1);
+    container1.appendChild(para);
     // Create an <input> element, set its type and name attributes
     var input1 = document.createElement("input");
     input1.type = "text";
     input1.name = "opt" + (i+1);
     input1.style.width = "400px";
+    input1.style.height = "18px";
+    input1.style.marginBottom = "6.273px";
     container2.appendChild(input1);
     // Append a line break 
-    container1.appendChild(document.createElement("br"));
     container2.appendChild(document.createElement("br"));
 
-    container3.appendChild(document.createTextNode("correct"));
-    container4.appendChild(document.createTextNode("wrong"));
     // Create an <input> element, set its type and name attributes
     var input2 = document.createElement("input");
     input2.type = "radio";
@@ -160,11 +218,19 @@ function addFields()
     input3.value = "wrong";
     input3.style.width = "10px";
 
-    container3.appendChild(input2);
-    container4.appendChild(input3);
+    var para2 = document.createElement("p");
+    para2.innerHTML = "Option " + (i+1) + "  correct";
+    para2.appendChild(input2);
+    container3.appendChild(para2);
+
+    var para3 = document.createElement("p");
+    para3.innerHTML = "wrong";
+    para3.appendChild(input3);
+    container4.appendChild(para3);
+    
     // Append a line break 
-    container3.appendChild(document.createElement("br"));
-    container4.appendChild(document.createElement("br"));
+    //container3.appendChild(document.createElement("br"));
+    //container4.appendChild(document.createElement("br"));
 
 
   }

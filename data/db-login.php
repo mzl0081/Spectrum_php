@@ -32,14 +32,14 @@ if (isset($_POST['submit']))
 		}
 		else
 		{
-			$_SESSION["loginMsg"] = "";
-			$row = mysqli_fetch_assoc($result);
-			
+			//$_SESSION["loginMsg"] = "";
+			$row = mysqli_fetch_assoc($result);			
 			if ($userType == "student")
 			{
 				if ($pwd == $row["userPassword"])
 				{
 					$_SESSION["loginUser"] = $username;
+					$_SESSION["loginMsg"] = "";
 					header("Location: ../home.php");
 					exit();
 				}
@@ -55,6 +55,8 @@ if (isset($_POST['submit']))
 			{
 				if ($pwd == $row["adminPassword"])
 				{
+					$_SESSION["loginUser"] = "Administrator";
+					$_SESSION["loginMsg"] = "";
 					header("Location: ../admin/adminIndex.php");
 					exit();
 				}

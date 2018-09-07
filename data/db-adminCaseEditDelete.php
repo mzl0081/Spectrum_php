@@ -19,15 +19,13 @@ elseif (isset($_POST['delete']))
 	{
 		while($row = mysqli_fetch_assoc($result))
 		{
-		  $caseName = $row["caseName"];
-		  $caseDescription = $row["caseDescription"];
 		  $caseVideoName = $row["caseVideoName"];
 		  $caseCoverPic = $row["caseCoverPic"];
 		  $caseVideoScreenshot = $row["caseVideoScreenshot"];
 		}
 	}
 
-	$sql = "SELECT * FROM spectrum_teachersnote WHERE caseID='$caseId';";
+	$sql = "SELECT * FROM spectrum_teachersNote WHERE caseID='$caseId';";
 	$result = mysqli_query($conn, $sql);
 	$resultCheck = mysqli_num_rows($result);
 	if ($resultCheck > 0)
@@ -60,7 +58,7 @@ elseif (isset($_POST['delete']))
 	$sql = "DELETE FROM spectrum_quiz_records WHERE caseID='$caseId';";
 	mysqli_query($conn, $sql);
 
-	$sql = "DELETE FROM spectrum_teachersnote WHERE caseID='$caseId';";
+	$sql = "DELETE FROM spectrum_teachersNote WHERE caseID='$caseId';";
 	mysqli_query($conn, $sql);
 
 	$sql = "DELETE FROM spectrum_case WHERE caseID='$caseId';";

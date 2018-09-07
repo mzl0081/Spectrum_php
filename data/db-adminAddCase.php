@@ -5,6 +5,7 @@ if (isset($_POST['upload']))
 	include_once 'db-conn.php';
 
 	$caseNumber = mysqli_real_escape_string($conn, $_POST['caseNumber']);
+	$caseChapter = mysqli_real_escape_string($conn, $_POST['caseChapter']);
 	$caseName = mysqli_real_escape_string($conn, $_POST['caseName']);
 	$caseDescription = mysqli_real_escape_string($conn, $_POST['caseDescription']);
 
@@ -17,7 +18,7 @@ if (isset($_POST['upload']))
 		exit();
 	}
 
-	$sql = "SELECT * FROM spectrum_teachersnote WHERE caseID='$caseNumber';";
+	$sql = "SELECT * FROM spectrum_teachersNote WHERE caseID='$caseNumber';";
 	$result = mysqli_query($conn, $sql);
 	$resultCheck = mysqli_num_rows($result);
 	if ($resultCheck > 0)
@@ -27,172 +28,203 @@ if (isset($_POST['upload']))
 	}
 
 
-
 //case cover picture
-	$caseCPFile = $_FILES['caseCoverPic'];
-	$caseCPFileName = $_FILES['caseCoverPic']['name'];
-	$caseCPFileTmpName = $_FILES['caseCoverPic']['tmp_name'];
-	$caseCPFileSize = $_FILES['caseCoverPic']['size'];
-	$caseCPFileError = $_FILES['caseCoverPic']['error'];
-	$caseCPFileType = $_FILES['caseCoverPic']['type'];
-
-	$caseCPFileExt = explode('.', $caseCPFileName);
-	$caseCPFileActualExt = strtolower(end($caseCPFileExt));
-	$caseCPFileAllowed = array('jpg', 'jpeg', 'png', 'bmp');
-
-	if (in_array($caseCPFileActualExt, $caseCPFileAllowed))
+	if(!file_exists($_FILES['caseCoverPic']['tmp_name']) || !is_uploaded_file($_FILES['caseCoverPic']['tmp_name']))
 	{
-		if ($caseCPFileError === 0)
+		$caseCPFileNewName = 0;
+	}
+	else
+	{
+		$caseCPFile = $_FILES['caseCoverPic'];
+		$caseCPFileName = $_FILES['caseCoverPic']['name'];
+		$caseCPFileTmpName = $_FILES['caseCoverPic']['tmp_name'];
+		$caseCPFileSize = $_FILES['caseCoverPic']['size'];
+		$caseCPFileError = $_FILES['caseCoverPic']['error'];
+		$caseCPFileType = $_FILES['caseCoverPic']['type'];
+
+		$caseCPFileExt = explode('.', $caseCPFileName);
+		$caseCPFileActualExt = strtolower(end($caseCPFileExt));
+		$caseCPFileAllowed = array('jpg', 'jpeg', 'png', 'bmp');
+
+		if (in_array($caseCPFileActualExt, $caseCPFileAllowed))
 		{
-			if ($caseCPFileSize < 3000000)
+			if ($caseCPFileError === 0)
 			{
-				$caseCPFileNewName = "case_video_cover_".$caseNumber.".".$caseCPFileActualExt;
-				$caseCPFileDestination = "../cases/caseCoverPic/".$caseCPFileNewName;
-				move_uploaded_file($caseCPFileTmpName, $caseCPFileDestination);
+				if ($caseCPFileSize < 3000000)
+				{
+					$caseCPFileNewName = "case_video_cover_".$caseNumber.".".$caseCPFileActualExt;
+					$caseCPFileDestination = "../cases/caseCoverPic/".$caseCPFileNewName;
+					move_uploaded_file($caseCPFileTmpName, $caseCPFileDestination);
+				}
+				else
+				{
+					echo "Your case cover picture is too big!";
+				}
+
 			}
 			else
 			{
-				echo "Your case cover picture is too big!";
+				echo "There was an error uploading your case cover picture!";
 			}
 
 		}
 		else
 		{
-			echo "There was an error uploading your case cover picture!";
-		}
+			echo "Error file type for case cover picture!";
+		}	
+	}
 
-	}
-	else
-	{
-		echo "Error file type for case cover picture!";
-	}
 
 
 
 
 //case video screenshot
-	$caseVSFile = $_FILES['caseVideoScreenshot'];
-	$caseVSFileName = $_FILES['caseVideoScreenshot']['name'];
-	$caseVSFileTmpName = $_FILES['caseVideoScreenshot']['tmp_name'];
-	$caseVSFileSize = $_FILES['caseVideoScreenshot']['size'];
-	$caseVSFileError = $_FILES['caseVideoScreenshot']['error'];
-	$caseVSFileType = $_FILES['caseVideoScreenshot']['type'];
-
-	$caseVSFileExt = explode('.', $caseVSFileName);
-	$caseVSFileActualExt = strtolower(end($caseVSFileExt));
-	$caseVSFileAllowed = array('jpg', 'jpeg', 'png', 'bmp');
-
-	if (in_array($caseVSFileActualExt, $caseVSFileAllowed))
+	if(!file_exists($_FILES['caseVideoScreenshot']['tmp_name']) || !is_uploaded_file($_FILES['caseVideoScreenshot']['tmp_name']))
 	{
-		if ($caseVSFileError === 0)
+		$caseVSFileNewName = 0;
+	}
+	else
+	{
+		$caseVSFile = $_FILES['caseVideoScreenshot'];
+		$caseVSFileName = $_FILES['caseVideoScreenshot']['name'];
+		$caseVSFileTmpName = $_FILES['caseVideoScreenshot']['tmp_name'];
+		$caseVSFileSize = $_FILES['caseVideoScreenshot']['size'];
+		$caseVSFileError = $_FILES['caseVideoScreenshot']['error'];
+		$caseVSFileType = $_FILES['caseVideoScreenshot']['type'];
+
+		$caseVSFileExt = explode('.', $caseVSFileName);
+		$caseVSFileActualExt = strtolower(end($caseVSFileExt));
+		$caseVSFileAllowed = array('jpg', 'jpeg', 'png', 'bmp');
+
+		if (in_array($caseVSFileActualExt, $caseVSFileAllowed))
 		{
-			if ($caseVSFileSize < 3000000)
+			if ($caseVSFileError === 0)
 			{
-				$caseVSFileNewName = "case_video_screenshot_".$caseNumber.".".$caseVSFileActualExt;
-				$caseVSFileDestination = "../cases/caseVideoScreenshot/".$caseVSFileNewName;
-				move_uploaded_file($caseVSFileTmpName, $caseVSFileDestination);
+				if ($caseVSFileSize < 3000000)
+				{
+					$caseVSFileNewName = "case_video_screenshot_".$caseNumber.".".$caseVSFileActualExt;
+					$caseVSFileDestination = "../cases/caseVideoScreenshot/".$caseVSFileNewName;
+					move_uploaded_file($caseVSFileTmpName, $caseVSFileDestination);
+				}
+				else
+				{
+					echo "Your file is too big!";
+				}
+
 			}
 			else
 			{
-				echo "Your file is too big!";
+				echo "There was an error uploading your case video screenshot!";
 			}
 
 		}
 		else
 		{
-			echo "There was an error uploading your case video screenshot!";
+			echo "Error file type for case video screenshot!";
 		}
-
 	}
-	else
-	{
-		echo "Error file type for case video screenshot!";
-	}
+	
 
 
 
 
 //case video
-	$caseVideoFile = $_FILES['caseVideo'];
-	$caseVideoFileName = $_FILES['caseVideo']['name'];
-	$caseVideoFileTmpName = $_FILES['caseVideo']['tmp_name'];
-	$caseVideoFileSize = $_FILES['caseVideo']['size'];
-	$caseVideoFileError = $_FILES['caseVideo']['error'];
-	$caseVideoFileType = $_FILES['caseVideo']['type'];
-
-	$caseVideoFileExt = explode('.', $caseVideoFileName);
-	$caseVideoFileActualExt = strtolower(end($caseVideoFileExt));
-	$caseVideoFileAllowed = array('mp4', 'mpeg', 'flv', 'mkv', 'avi', 'm4v');
-
-	if (in_array($caseVideoFileActualExt, $caseVideoFileAllowed))
+	if(!file_exists($_FILES['caseVideo']['tmp_name']) || !is_uploaded_file($_FILES['caseVideo']['tmp_name']))
 	{
-		if ($caseVideoFileError === 0)
+		$caseVideoFileNewName = 0;
+	}
+	else
+	{
+		$caseVideoFile = $_FILES['caseVideo'];
+		$caseVideoFileName = $_FILES['caseVideo']['name'];
+		$caseVideoFileTmpName = $_FILES['caseVideo']['tmp_name'];
+		$caseVideoFileSize = $_FILES['caseVideo']['size'];
+		$caseVideoFileError = $_FILES['caseVideo']['error'];
+		$caseVideoFileType = $_FILES['caseVideo']['type'];
+
+		$caseVideoFileExt = explode('.', $caseVideoFileName);
+		$caseVideoFileActualExt = strtolower(end($caseVideoFileExt));
+		$caseVideoFileAllowed = array('mp4', 'mpeg', 'flv', 'mkv', 'avi', 'm4v');
+
+		if (in_array($caseVideoFileActualExt, $caseVideoFileAllowed))
 		{
-			if ($caseVideoFileSize < 30000000)
+			if ($caseVideoFileError === 0)
 			{
-				$caseVideoFileNewName = "case_video_".$caseNumber.".".$caseVideoFileActualExt;
-				$caseVideoFileDestination = "../cases/caseVideo/".$caseVideoFileNewName;
-				move_uploaded_file($caseVideoFileTmpName, $caseVideoFileDestination);
+				if ($caseVideoFileSize < 30000000)
+				{
+					$caseVideoFileNewName = "case_video_".$caseNumber.".".$caseVideoFileActualExt;
+					$caseVideoFileDestination = "../cases/caseVideo/".$caseVideoFileNewName;
+					move_uploaded_file($caseVideoFileTmpName, $caseVideoFileDestination);
+				}
+				else
+				{
+					echo "Your video file is too big!";
+				}
+
 			}
 			else
 			{
-				echo "Your video file is too big!";
+				echo "There was an error uploading your video file!";
 			}
 
 		}
 		else
 		{
-			echo "There was an error uploading your video file!";
+			echo "Error file type for case video!";
 		}
-
 	}
-	else
-	{
-		echo "Error file type for case video!";
-	}
+	
 
 
 
 
 
 //teacher's note cover picture
-	$tNoteCPFile = $_FILES['tNoteCoverPic'];
-	$tNoteCPFileName = $_FILES['tNoteCoverPic']['name'];
-	$tNoteCPFileTmpName = $_FILES['tNoteCoverPic']['tmp_name'];
-	$tNoteCPFileSize = $_FILES['tNoteCoverPic']['size'];
-	$tNoteCPFileError = $_FILES['tNoteCoverPic']['error'];
-	$tNoteCPFileType = $_FILES['tNoteCoverPic']['type'];
-
-	$tNoteCPFileExt = explode('.', $tNoteCPFileName);
-	$tNoteCPFileActualExt = strtolower(end($tNoteCPFileExt));
-	$tNoteCPFileAllowed = array('jpg', 'jpeg', 'png', 'bmp');
-
-	if (in_array($tNoteCPFileActualExt, $tNoteCPFileAllowed))
+	if(!file_exists($_FILES['tNoteCoverPic']['tmp_name']) || !is_uploaded_file($_FILES['tNoteCoverPic']['tmp_name']))
 	{
-		if ($tNoteCPFileError === 0)
+		$tNoteCPFileNewName = 0;
+	}
+	else
+	{
+		$tNoteCPFile = $_FILES['tNoteCoverPic'];
+		$tNoteCPFileName = $_FILES['tNoteCoverPic']['name'];
+		$tNoteCPFileTmpName = $_FILES['tNoteCoverPic']['tmp_name'];
+		$tNoteCPFileSize = $_FILES['tNoteCoverPic']['size'];
+		$tNoteCPFileError = $_FILES['tNoteCoverPic']['error'];
+		$tNoteCPFileType = $_FILES['tNoteCoverPic']['type'];
+
+		$tNoteCPFileExt = explode('.', $tNoteCPFileName);
+		$tNoteCPFileActualExt = strtolower(end($tNoteCPFileExt));
+		$tNoteCPFileAllowed = array('jpg', 'jpeg', 'png', 'bmp');
+
+		if (in_array($tNoteCPFileActualExt, $tNoteCPFileAllowed))
 		{
-			if ($tNoteCPFileSize < 3000000)
+			if ($tNoteCPFileError === 0)
 			{
-				$tNoteCPFileNewName = "tnote_cover_".$caseNumber.".".$tNoteCPFileActualExt;
-				$tNoteCPFileDestination = "../cases/tNoteCoverPic/".$tNoteCPFileNewName;
-				move_uploaded_file($tNoteCPFileTmpName, $tNoteCPFileDestination);
+				if ($tNoteCPFileSize < 3000000)
+				{
+					$tNoteCPFileNewName = "tnote_cover_".$caseNumber.".".$tNoteCPFileActualExt;
+					$tNoteCPFileDestination = "../cases/tNoteCoverPic/".$tNoteCPFileNewName;
+					move_uploaded_file($tNoteCPFileTmpName, $tNoteCPFileDestination);
+				}
+				else
+				{
+					echo "Your teacher's note cover picture is too big!";
+				}
+
 			}
 			else
 			{
-				echo "Your teacher's note cover picture is too big!";
+				echo "There was an error uploading your teacher's note cover picture!";
 			}
 
 		}
 		else
 		{
-			echo "There was an error uploading your teacher's note cover picture!";
+			echo "Error file type for teacher's note cover picture!";
 		}
-
 	}
-	else
-	{
-		echo "Error file type for teacher's note cover picture!";
-	}
+	
 
 
 
@@ -200,50 +232,57 @@ if (isset($_POST['upload']))
 
 
 //teacher's note
-	$tNoteFile = $_FILES['tNote'];
-	$tNoteFileName = $_FILES['tNote']['name'];
-	$tNoteFileTmpName = $_FILES['tNote']['tmp_name'];
-	$tNoteFileSize = $_FILES['tNote']['size'];
-	$tNoteFileError = $_FILES['tNote']['error'];
-	$tNoteFileType = $_FILES['tNote']['type'];
-
-	$tNoteFileExt = explode('.', $tNoteFileName);
-	$tNoteFileActualExt = strtolower(end($tNoteFileExt));
-	$tNoteFileAllowed = array('mp4', 'mpeg', 'flv', 'mkv', 'avi', 'm4v');
-
-	if (in_array($tNoteFileActualExt, $tNoteFileAllowed))
+	if(!file_exists($_FILES['tNote']['tmp_name']) || !is_uploaded_file($_FILES['tNote']['tmp_name']))
 	{
-		if ($tNoteFileError === 0)
+		$tNoteFileNewName = 0;
+	}
+	else
+	{
+		$tNoteFile = $_FILES['tNote'];
+		$tNoteFileName = $_FILES['tNote']['name'];
+		$tNoteFileTmpName = $_FILES['tNote']['tmp_name'];
+		$tNoteFileSize = $_FILES['tNote']['size'];
+		$tNoteFileError = $_FILES['tNote']['error'];
+		$tNoteFileType = $_FILES['tNote']['type'];
+
+		$tNoteFileExt = explode('.', $tNoteFileName);
+		$tNoteFileActualExt = strtolower(end($tNoteFileExt));
+		$tNoteFileAllowed = array('mp4', 'mpeg', 'flv', 'mkv', 'avi', 'm4v');
+
+		if (in_array($tNoteFileActualExt, $tNoteFileAllowed))
 		{
-			if ($tNoteFileSize < 30000000)
+			if ($tNoteFileError === 0)
 			{
-				$tNoteFileNewName = "tnote_video_".$caseNumber.".".$tNoteFileActualExt;
-				$tNoteFileDestination = "../cases/tNoteVideo/".$tNoteFileNewName;
-				move_uploaded_file($tNoteFileTmpName, $tNoteFileDestination);
+				if ($tNoteFileSize < 30000000)
+				{
+					$tNoteFileNewName = "tnote_video_".$caseNumber.".".$tNoteFileActualExt;
+					$tNoteFileDestination = "../cases/tNoteVideo/".$tNoteFileNewName;
+					move_uploaded_file($tNoteFileTmpName, $tNoteFileDestination);
+				}
+				else
+				{
+					echo "Your teacher's note video is too big!";
+				}
+
 			}
 			else
 			{
-				echo "Your teacher's note video is too big!";
+				echo "There was an error uploading your teacher's note video!";
 			}
 
 		}
 		else
 		{
-			echo "There was an error uploading your teacher's note video!";
+			echo "Error file type for teacher's note!";
 		}
-
-	}
-	else
-	{
-		echo "Error file type for teacher's note!";
 	}
 
 	//echo $tNoteFileNewName.",".$tNoteCPFileNewName.",".$caseNumber;
 
-	$sql = "INSERT INTO spectrum_case (caseID, caseName, caseDescription, caseVideoName, caseType, caseCoverPic, caseVideoScreenshot) VALUES ('$caseNumber', '$caseName', '$caseDescription', '$caseVideoFileNewName', '1', '$caseCPFileNewName', '$caseVSFileNewName');";
+	$sql = "INSERT INTO spectrum_case (caseID, caseName, caseDescription, caseVideoName, caseChapter, caseCoverPic, caseVideoScreenshot) VALUES ('$caseNumber', '$caseName', '$caseDescription', '$caseVideoFileNewName', '$caseChapter', '$caseCPFileNewName', '$caseVSFileNewName');";
 	mysqli_query($conn, $sql);
 
-	$sql = "INSERT INTO spectrum_teachersnote (noteVideo, noteCover, caseID) VALUES ('$tNoteFileNewName', '$tNoteCPFileNewName', '$caseNumber');";
+	$sql = "INSERT INTO spectrum_teachersNote (noteVideo, noteCover, caseID) VALUES ('$tNoteFileNewName', '$tNoteCPFileNewName', '$caseNumber');";
 	mysqli_query($conn, $sql);
 
 	header("Location: ../admin/cases.php");

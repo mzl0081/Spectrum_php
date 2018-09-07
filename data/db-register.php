@@ -23,10 +23,10 @@ if (isset($_POST['submit']))
 	}
 	else
 	{
-		$_SESSION["regMsg"] = "";
+		$_SESSION["regMsg"] = "success";
 		$sql = "INSERT INTO spectrum_users (userAccount, userPassword, userEmail, userDisplayName, userAvatar) VALUES ('$userAccount', '$pwd', '$email', '$userRealName', 'default_avatar');";
 		mysqli_query($conn, $sql);
-		header("Location: ../signUpSuccess.html");
+		header("Location: ../login.php");
 		exit();
 	}
 

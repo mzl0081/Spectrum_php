@@ -2,12 +2,13 @@
 
 session_start();
 
-if (isset($_POST['update']))
+if (isset($_POST['updateAns']))
 {
 	include_once 'db-conn.php';
 
-	$ans = mysqli_real_escape_string($conn, $_POST['ansDescription']);
-	$ansId = mysqli_real_escape_string($conn, $_POST['thisAnsId']);
+	$ans = mysqli_real_escape_string($conn, $_POST['newAnswer']);
+	$ansId = mysqli_real_escape_string($conn, $_POST['updateAnsId']);
+	date_default_timezone_set("America/Chicago");
 	$nowTime = date("Y-m-d h:i:sa");
 
 	$sql = "UPDATE spectrum_topic_reply SET replyContent='$ans', replyTime='$nowTime' WHERE topicReplyID='$ansId';";

@@ -1,0 +1,28 @@
+/* CSS Document */
+
+.clear { clear: both; }
+.main{ min-width:320px; background:#edefee; height:auto; padding-bottom:5px;}
+.index{ margin:10px 10px 5px 10px; background:#ffffff; box-shadow:1px 1px 3px #CCC; padding:5px 10px; border-radius:5px;position:relative;}
+.index .index_box .icon_h{ float:left; margin-right:15px; }
+.index .index_box .titl{ overflow:hidden;}
+.index .index_box .titl p{ font-size:30px;text-decoration:none}
+.index .index_box .titl_h{ color:#666; }
+.index .index_box .titl_h i { float:right}
+.index .index_box .titl_h i span{ color:#db6820; float:right}
+.index .index_box .titl_h floor{ margin-left:10px;}
+.index .index_box .titl_h floor span{ color:#db6820}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

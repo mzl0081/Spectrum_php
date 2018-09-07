@@ -1,8 +1,8 @@
 <?php
 
-$dbServername = "acadmysql.duc.auburn.edu";
-$dbUsername = "bzl0048";
-$dbPassword = "boningliang";
-$dbName = "bzl0048db";
+$dbServername = "127.0.0.1";
+$dbUsername = "root";
+$dbPassword = "";
+$dbName = "spectrum1";
 
 $conn = mysqli_connect($dbServername, $dbUsername, $dbPassword, $dbName);
